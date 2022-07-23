@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-
+    <cards/>
   </div>
 </template>
 
 <script>
+import Cards from "@/components/Cards";
 
 export default {
   name: 'App',
-
+  components: {Cards}
 }
 </script>
 
