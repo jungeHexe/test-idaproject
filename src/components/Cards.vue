@@ -1,31 +1,40 @@
 <template>
+  <div class="row">
+    <adding-form
+      @add-card="addCard"
+    />
     <div class="row col-lg-9 container">
       <card
           v-for="card in cards"
           @delete-card="deleteCard"
           :card = "card"
       ></card>
-      <div v-if="cards.length == 0" class="empty-list">Список пуст</div>
+      <div v-if="cards.length === 0" class="empty-list">Список пуст</div>
     </div>
+  </div>
 </template>
 
 <script>
 import Card from "@/components/Card";
 import cardService from "@/services/card.service";
+import AddingForm from "@/components/AddingForm";
 
 export default {
   data() {
     return {
-      cards: []
+      cards: [],
     }
   },
-  components: {Card},
+  components: {Card, AddingForm},
   mounted() {
-      this.cards.push(...cardService.getCards());
+      this.cards = cardService.getCards();
   },
   methods: {
     deleteCard(id){
       this.cards = cardService.deleteCard(id);
+    },
+    addCard(form){
+      this.cards = cardService.addCard(form);
     }
   }
 }

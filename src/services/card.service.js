@@ -1,3 +1,4 @@
+/*переменная заглушка данных, при работе с сервером данные запрашивать и обрабатывать через fetch*/
 let cards =  [
     {id:1, image: require('@/assets/photo.svg'), title: 'Наименование товара', content: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк.', price: 10000},
     {id:2, image: require('@/assets/photo.svg'), title: 'Наименование товара', content: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк.', price: 10000},
@@ -17,6 +18,11 @@ export default {
 
     deleteCard(id){
         cards = cards.filter(el => el.id != id);
+        return cards;
+    },
+
+    addCard(item){
+        cards.push({id: cards.length+1, ...item});
         return cards;
     }
 }

@@ -2,24 +2,24 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
     <div class="box form">
       <div class="title">Добавление товара</div>
-      <form>
+      <form @submit.prevent="onSubmit">
         <div>
           <label class="required">Наименование товара</label>
-          <input required placeholder="Введите наименование товара"/>
+          <input required placeholder="Введите наименование товара" v-model="form.title"/>
         </div>
         <div>
           <label>Описание товара</label>
-          <textarea placeholder="Введите описание товара"/>
+          <textarea placeholder="Введите описание товара" v-model="form.content"/>
         </div>
         <div>
           <label class="required">Ссылка на изображение товара</label>
-          <input required placeholder="Введите ссылку"/>
+          <input required placeholder="Введите ссылку" v-model="form.image"/>
         </div>
         <div>
           <label class="required">Цена товара</label>
-          <input required placeholder="Введите цену"/>
+          <input required placeholder="Введите цену" v-model="form.price"/>
         </div>
-        <button disabled type="submit">Добавить товар</button>
+        <button type="submit">Добавить товар</button>
       </form>
 
     </div>
@@ -28,7 +28,18 @@
 
 <script>
 export default {
+  data(){
+    return {
+      form : {},
+    }
+  },
 
+  methods: {
+    onSubmit(){
+      this.$emit('add-card', this.form);
+      this.form = {};
+    }
+  }
 }
 </script>
 
