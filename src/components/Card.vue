@@ -1,7 +1,14 @@
 <template>
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-    <div class="box card">
+    <div
+        @mouseenter="showDelete = true"
+        @mouseleave="showDelete = false"
+        class="box card">
         <img :src="card.image" alt="photo.svg">
+        <button
+            v-if="showDelete"
+            @click="$emit('delete-card', card.id)"
+            class="delete-btn"></button>
 
         <div class="text-block">
           <div class="title">{{card.title}}</div>
@@ -14,6 +21,11 @@
 
 <script>
 export default {
+  data(){
+    return {
+      showDelete: false,
+    }
+  },
   props: {card: Object},
   methods: {
     formatPrice(price) {
@@ -22,6 +34,10 @@ export default {
       let left = price.slice(0, price.length-3);
 
       return `${left} ${right} руб.`
+    },
+
+    deleteCard(id){
+      this.$emit('deleteCard', id)
     }
   }
 }
@@ -38,12 +54,34 @@ export default {
     margin-bottom: 16px;
     box-sizing: border-box;
     width: 100%;
+    cursor: pointer;
 
+    .delete-btn {
+      background-color: #FF8484;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      background-image: url("../assets/delete.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      border:none;
+      height:32px;
+      width:32px;
+      cursor: pointer;
+      margin:-8px -24px;
+      position: absolute;
+
+      &:hover{
+        background-color: #fd5e5e;
+      }
+
+      &:active{
+        background-color: #FF8484;
+      }
+    }
 
     &:hover{
-      transform: scale(1.05);
+      transform: scale(1.03);
       transition: transform 0.5s ease 0s;
-      cursor: pointer;
     }
 
     img{
