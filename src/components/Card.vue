@@ -29,11 +29,15 @@ export default {
   props: {card: Object},
   methods: {
     formatPrice(price) {
-      price = price.toString();
-      let right = price.slice(price.length-3, price.length);
-      let left = price.slice(0, price.length-3);
+      if(price > 999) {
+        price = price.toString();
+        let right = price.slice(price.length - 3, price.length);
+        let left = price.slice(0, price.length - 3);
 
-      return `${left} ${right} руб.`
+        return `${left} ${right} руб.`
+      }else{
+        return `${price} руб.`
+      }
     },
 
     deleteCard(id){
@@ -86,6 +90,8 @@ export default {
 
     img{
       width:100%;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
     }
 
     .text-block{

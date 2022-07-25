@@ -2,24 +2,27 @@
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
     <div class="box form">
       <div class="title">Добавление товара</div>
-      <form @submit.prevent="onSubmit">
-        <div>
+      <form @submit.prevent="onSubmit" @input="validate">
+        <div id="title">
           <label class="required">Наименование товара</label>
-          <input required placeholder="Введите наименование товара" v-model="form.title"/>
+          <input placeholder="Введите наименование товара" v-model="form.title"/>
+          <small>Поле является обязательным</small>
         </div>
-        <div>
+        <div >
           <label>Описание товара</label>
           <textarea placeholder="Введите описание товара" v-model="form.content"/>
         </div>
-        <div>
+        <div id="image">
           <label class="required">Ссылка на изображение товара</label>
-          <input required placeholder="Введите ссылку" v-model="form.image"/>
+          <input placeholder="Введите ссылку" v-model="form.image"/>
+          <small>Поле является обязательным</small>
         </div>
-        <div>
+        <div id="price">
           <label class="required">Цена товара</label>
-          <input required placeholder="Введите цену" v-model="form.price"/>
+          <input placeholder="Введите цену" id="price-input" v-model="form.price" @blur="maskPrice"/>
+          <small>Поле является обязательным</small>
         </div>
-        <button type="submit">Добавить товар</button>
+        <button :disabled="disabled" type="submit">Добавить товар</button>
       </form>
 
     </div>
@@ -34,11 +37,38 @@ export default {
     }
   },
 
+  computed:{
+    disabled(){
+      return (this.form.title === undefined) || (this.form.image === undefined) || (this.form.price === undefined);
+    },
+  },
+
   methods: {
     onSubmit(){
-      this.$emit('add-card', this.form);
-      this.form = {};
-    }
+        this.$emit('add-card', this.form);
+        this.form = {};
+    },
+
+    validate(){
+        let notValid = ['title', 'image', 'price'];
+        let valid = 0;
+
+        for(let atr of notValid){
+          if(this.form[atr] === undefined || this.form[atr] === ''){
+              document.getElementById(atr).classList.add('not-valid');
+          }else{
+            document.getElementById(atr).classList.remove('not-valid');
+            valid++;
+          }
+        }
+
+        return valid === 3;
+    },
+
+    maskPrice(event){
+      let price = event.target.value;
+      event.target.value = `${price.slice(0, price.length - 3)} ${price.slice(price.length - 3, price.length)}`;
+    },
   }
 }
 </script>
@@ -72,6 +102,10 @@ export default {
       line-height: 13px;
       color: #49485E;
 
+      small{
+        display: none;
+      }
+
       .required:after{
         content: "●";
         margin-top: -4px;
@@ -96,6 +130,18 @@ export default {
 
         &:focus{
           outline: none;
+        }
+      }
+
+      .not-valid {
+        input {
+          border: 1px solid #FF8484;
+          margin-bottom: 4px;
+        }
+
+        small{
+          color: #FF8484;
+          display: block;
         }
       }
 

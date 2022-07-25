@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div id="app">
       <cards/>
   </div>
 </template>
@@ -15,11 +15,8 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
   padding: 0 32px;
 }
 </style>
