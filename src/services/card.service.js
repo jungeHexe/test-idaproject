@@ -12,9 +12,6 @@ let cards =  JSON.parse(sessionStorage.getItem('cards')) || [
 ];
 
 export default {
-    getCards(){
-        return cards;
-    },
 
     deleteCard(id){
         cards = cards.filter(el => el.id != id);
@@ -26,5 +23,32 @@ export default {
         cards.push({id: cards.length+1, ...item});
         sessionStorage.setItem('cards', JSON.stringify(cards));
         return cards;
+    },
+
+    sortDefault(){
+        return cards;
+    },
+
+    sortByMinPrice(){
+        return cards.sort((a,b) => { return a.price - b.price});
+    },
+
+    sortByMaxPrice(){
+        return cards.sort((a,b) => { return b.price - a.price});
+    },
+
+    sortByName(){
+        return cards.sort((a, b) => {
+            let fa = a.title.toLowerCase(),
+                fb = b.title.toLowerCase();
+
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
     }
 }

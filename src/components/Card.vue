@@ -57,7 +57,6 @@ export default {
     border-radius: 4px;
     margin-bottom: 16px;
     box-sizing: border-box;
-    width: 100%;
     cursor: pointer;
 
     .delete-btn {
