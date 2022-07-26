@@ -48,11 +48,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
 
   .card{
-    height: auto;
-    background: #FFFEFB;
+    height: 425px;
+    background: $white;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
     margin-bottom: 16px;
@@ -60,7 +59,7 @@ export default {
     cursor: pointer;
 
     .delete-btn {
-      background-color: #FF8484;
+      background-color: $delete-btn-color;
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       background-image: url("../assets/delete.svg");
@@ -74,11 +73,11 @@ export default {
       position: absolute;
 
       &:hover{
-        background-color: #fd5e5e;
+        background-color: $delete-btn-color-active;
       }
 
       &:active{
-        background-color: #FF8484;
+        background-color: $delete-btn-color;
       }
     }
 
@@ -97,7 +96,7 @@ export default {
       padding: 0 16px 24px;
       font-family: Source Sans Pro, sans-serif;
       font-style: normal;
-      color: #3F3F3F;
+      color: $black;
       text-align: left;
 
       .title{

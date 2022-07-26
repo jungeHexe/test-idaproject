@@ -74,14 +74,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
-
   .form{
     font-family: Source Sans Pro, sans-serif;
     font-style: normal;
-    color: #3F3F3F;
+    color: $black;
     text-align: left;
-    margin-bottom: -50px;
+    margin-bottom: 20px;
 
     .title{
       margin:32px 0 16px;
@@ -93,7 +91,7 @@ export default {
     form{
       padding: 24px;
       height:auto;
-      background: #FFFEFB;
+      background: $white;
       box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.05), 0px 6px 10px rgba(0, 0, 0, 0.02);
       border-radius: 4px;
 
@@ -116,14 +114,14 @@ export default {
       input, textarea{
         width: 100%;
         box-sizing: border-box;
-        background: #FFFEFB;
+        background: $white;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 4px;
         border: none;
         padding: 10px 0px 10px 16px;
         margin: 4px 0 16px;
 
-        color: #3F3F3F;
+        color: $black;
         font-weight: 400;
         font-size: 12px;
         line-height: 15px;
@@ -135,12 +133,12 @@ export default {
 
       .not-valid {
         input {
-          border: 1px solid #FF8484;
+          border: 1px solid $delete-btn-color;
           margin-bottom: 4px;
         }
 
         small{
-          color: #FF8484;
+          color: $delete-btn-color;
           display: block;
         }
       }
@@ -160,9 +158,10 @@ export default {
         justify-content: center;
         padding: 10px 0;
         border:none;
-        background: #7BAE73;
+        background: $light-green;
         color:#FFFFFF;
         margin-top:8px;
+        cursor: pointer;
 
         font-weight: 600;
         font-size: 12px;
@@ -173,9 +172,14 @@ export default {
           background: #EEEEEE;
         }
 
+        &:enabled:hover{
+          background: $light-green-hover;
+        }
+
+        &:enabled:active{
+          background: $light-green;
+        }
       }
     }
-
-
   }
 </style>

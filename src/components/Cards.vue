@@ -9,7 +9,7 @@
       @add-card="addCard"
     />
     <div class="col-lg-9">
-      <select class="sorting-select" v-model="sortBy">
+      <select class="sorting-select row" v-model="sortBy">
         <option selected value="default">По умолчанию</option>
         <option value="name">По наименованию</option>
         <option value="maxPrice">По убыванию цены</option>
@@ -102,7 +102,7 @@ export default {
     margin:32px 0 0;
     height: 36px;
     float:right;
-    background-color: #FFFEFB;
+    background-color: $white;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     border: none;

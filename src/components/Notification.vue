@@ -29,7 +29,7 @@ export default {
       height: auto;
       padding: 10px;
       width: 300px;
-      background-color: #fafcfa;
+      background-color: $white;
       border:1px solid #e0dede;
       border-radius: 4px;
       text-align: left;
@@ -45,11 +45,11 @@ export default {
     }
 
     .success{
-      color:#7BAE73;
+      color:$light-green;
     }
 
     .error{
-      color:#FF8484;
+      color:$delete-btn-color;
     }
   }
 </style>
