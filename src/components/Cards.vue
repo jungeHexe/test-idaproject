@@ -86,7 +86,7 @@ export default {
     margin:32px 0 0;
     height: 36px;
     float:right;
-    background: #FFFEFB;
+    background-color: #FFFEFB;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     border: none;
