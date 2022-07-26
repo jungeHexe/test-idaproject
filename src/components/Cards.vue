@@ -1,5 +1,10 @@
 <template>
   <div class="row">
+    <notification
+      v-if="eventDel || eventCreate"
+      :text = "eventDel ? 'Товар успешно удален' : 'Товар успешно добавлен'"
+      :color = "'success'"
+    ></notification>
     <adding-form
       @add-card="addCard"
     />
@@ -29,6 +34,7 @@ import Card from "@/components/Card";
 import cardService from "@/services/card.service";
 import AddingForm from "@/components/AddingForm";
 import Loader from "@/components/Loader";
+import Notification from "@/components/Notification";
 
 export default {
   data() {
@@ -36,9 +42,11 @@ export default {
       cards: [],
       sortBy: 'default',
       loading: true,
+      eventDel: false,
+      eventCreate:false,
     }
   },
-  components: {Loader, Card, AddingForm},
+  components: {Notification, Loader, Card, AddingForm},
   mounted() {
       setTimeout(() => {
         this.cards = cardService.sortDefault();
@@ -62,9 +70,17 @@ export default {
   methods: {
     deleteCard(id){
       this.cards = cardService.deleteCard(id);
+      this.eventDel = true;
+      setTimeout(() => {
+        this.eventDel = false;
+      }, 3000);
     },
     addCard(form){
       this.cards = cardService.addCard(form);
+      this.eventCreate = true;
+      setTimeout (() => {
+        this.eventCreate = false;
+      }, 3000);
     }
   }
 }
