@@ -1,5 +1,18 @@
 # test-idaproject-vue2
 
+Node version v14.16.1
+
+##Запуск на локальной машине
+Склонировать репозиторий, перейти в папку проекта из командной строки, запустить команду
+```
+yarn install
+```
+и далее
+```
+yarn serve
+```
+Открыть результат http://localhost:8080/
+
 ## Project setup
 ```
 yarn install
